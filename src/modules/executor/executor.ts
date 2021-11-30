@@ -7,12 +7,16 @@ import { BigNumber } from '@ethersproject/bignumber'
 import prettifyNumber from 'src/utils/prettifyNumber'
 import { formatEther, formatUnits } from '@ethersproject/units'
 import { TransactionRequest } from '@ethersproject/abstract-provider'
-import { TARGET_ADDRESS, TARGET_AMOUNT_TO_MINT_PER_WALLET, TARGET_MINT_PRICE, GWEI, TARGET_MINT_DATA } from 'src/constants'
 import { FlashbotsBundleProvider, FlashbotsBundleRawTransaction, FlashbotsBundleTransaction } from '@flashbots/ethers-provider-bundle'
-
-const PRIORITY_FEE = GWEI.mul(300)
-const BASE_FEE_MULTIPLIER = BigNumber.from(2)
-const ESTIMATED_GAS_PER_MINT = BigNumber.from(1000000)
+import {
+  PRIORITY_FEE,
+  TARGET_ADDRESS,
+  TARGET_MINT_DATA,
+  TARGET_MINT_PRICE,
+  BASE_FEE_MULTIPLIER,
+  ESTIMATED_GAS_PER_MINT,
+  TARGET_AMOUNT_TO_MINT_PER_WALLET,
+} from 'src/constants'
 
 export interface ExecutorArgs {
   bundleId: number
