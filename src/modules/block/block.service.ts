@@ -43,7 +43,6 @@ export class BlockService {
   }
 
   startMonitorBloxroute() {
-    console.log('halovdfvss')
     return new Promise((resolve) => {
       const ws = new WebSocket('wss://api.blxrbdn.com/ws', {
         headers: { Authorization: process.env.BLOXROUTE_AUTHORIZATION_HEADER },
