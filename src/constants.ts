@@ -4,6 +4,7 @@ import { BigNumber } from '@ethersproject/bignumber'
 export const GWEI = BigNumber.from(10).pow(9)
 export const ETHER = BigNumber.from(10).pow(18)
 export const MAX_BUNDLE_ATTEMPTS = 10
+export const TXS_PER_WALLET = 2
 export const TARGET_MINT_PRICE = parseEther('0.069')
 export const TARGET_AMOUNT_TO_MINT_PER_WALLET = BigNumber.from(10)
 export const TARGET_ADDRESS = '0x79fcdef22feed20eddacbb2587640e45491b757f'

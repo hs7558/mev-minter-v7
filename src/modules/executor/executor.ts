@@ -16,6 +16,7 @@ import {
   BASE_FEE_MULTIPLIER,
   ESTIMATED_GAS_PER_MINT,
   TARGET_AMOUNT_TO_MINT_PER_WALLET,
+  TXS_PER_WALLET,
 } from 'src/constants'
 
 export interface ExecutorArgs {
@@ -90,10 +91,12 @@ export class Executor {
     const signedBundleTx = { signedTransaction: serializeTx(this.triggerTx) }
     const rawBundleTxs = []
     for (const wallet of this.wallets) {
-      rawBundleTxs.push({
-        transaction: this.buildMintTx(),
-        signer: wallet,
-      })
+      for (let i = 0; i < TXS_PER_WALLET; i++) {
+        rawBundleTxs.push({
+          transaction: this.buildMintTx(),
+          signer: wallet,
+        })
+      }
     }
     return [signedBundleTx, ...rawBundleTxs]
   }
