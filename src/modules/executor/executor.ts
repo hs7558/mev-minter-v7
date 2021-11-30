@@ -14,7 +14,7 @@ import {
   TARGET_MINT_DATA,
   TARGET_MINT_PRICE,
   BASE_FEE_MULTIPLIER,
-  ESTIMATED_GAS_PER_MINT,
+  ESTIMATED_GAS_PER_TX,
   TARGET_AMOUNT_TO_MINT_PER_WALLET,
   TXS_PER_WALLET,
 } from 'src/constants'
@@ -62,7 +62,7 @@ export class Executor {
   }
 
   private evaluateStrategy() {
-    this.gasRequired = TARGET_AMOUNT_TO_MINT_PER_WALLET.mul(ESTIMATED_GAS_PER_MINT)
+    this.gasRequired = BigNumber.from(this.wallets.length).mul(TXS_PER_WALLET).mul(ESTIMATED_GAS_PER_TX)
     this.nftCost = TARGET_AMOUNT_TO_MINT_PER_WALLET.mul(TARGET_MINT_PRICE)
     this.gasCost = this.targetBlockBaseFee.add(this.priorityFeeOptimal).mul(this.gasRequired)
     this.totalCost = this.nftCost.add(this.gasCost)
@@ -81,7 +81,7 @@ export class Executor {
       to: TARGET_ADDRESS,
       data: TARGET_MINT_DATA,
       maxFeePerGas: this.maxFeeOptimal,
-      gasLimit: ESTIMATED_GAS_PER_MINT.mul(2),
+      gasLimit: ESTIMATED_GAS_PER_TX.mul(2),
       maxPriorityFeePerGas: this.priorityFeeOptimal,
       value: TARGET_AMOUNT_TO_MINT_PER_WALLET.mul(TARGET_MINT_PRICE),
     })

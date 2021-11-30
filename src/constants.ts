@@ -12,7 +12,7 @@ export const TARGET_START_PUBLIC_SALE_SIGNATURE = '0xc4e370950000000000000000000
 export const TARGET_MINT_DATA = '0xa0712d68000000000000000000000000000000000000000000000000000000000000000a'
 export const PRIORITY_FEE = GWEI.mul(300)
 export const BASE_FEE_MULTIPLIER = BigNumber.from(2)
-export const ESTIMATED_GAS_PER_MINT = BigNumber.from(1188345)
+export const ESTIMATED_GAS_PER_TX = BigNumber.from(1188345)
 export const WALLETS = <Record<string, string>>{
   'Wallet 2': process.env.WALLET_2,
 }
