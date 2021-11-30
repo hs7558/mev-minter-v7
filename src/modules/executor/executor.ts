@@ -63,7 +63,7 @@ export class Executor {
 
   private evaluateStrategy() {
     this.gasRequired = BigNumber.from(this.wallets.length).mul(TXS_PER_WALLET).mul(ESTIMATED_GAS_PER_TX)
-    this.nftCost = TARGET_AMOUNT_TO_MINT_PER_WALLET.mul(TARGET_MINT_PRICE)
+    this.nftCost = BigNumber.from(this.wallets.length).mul(TXS_PER_WALLET).mul(TARGET_AMOUNT_TO_MINT_PER_WALLET).mul(TARGET_MINT_PRICE)
     this.gasCost = this.targetBlockBaseFee.add(this.priorityFeeOptimal).mul(this.gasRequired)
     this.totalCost = this.nftCost.add(this.gasCost)
   }
