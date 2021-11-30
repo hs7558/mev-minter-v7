@@ -3,6 +3,7 @@ import EventEmitter from 'events'
 import { GWEI } from 'src/constants'
 import { Block } from '@ethereumjs/block'
 import { Injectable } from '@nestjs/common'
+import isMainnet from 'src/utils/isMainnet'
 import { BigNumber } from '@ethersproject/bignumber'
 import Common, { Chain, Hardfork } from '@ethereumjs/common'
 import { ProviderService } from 'src/modules/provider/provider.service'
@@ -20,12 +21,13 @@ export class BlockService {
   }
 
   async start() {
-    if (process.env.BLOXROUTE_ENABLED === 'true') await this.startMonitorBloxroute()
+    if (isMainnet() && process.env.BLOXROUTE_ENABLED === 'true') await this.startMonitorBloxroute()
     else await this.startMonitorProvider()
     console.log('🧱 Block: Ready')
   }
 
   startMonitorProvider() {
+    console.log('🧱 Block: Start provider')
     return new Promise((resolve) => {
       const provider = this.providerService.getProvider()
       provider.on('block', async (currentBlock) => {
@@ -43,6 +45,7 @@ export class BlockService {
   }
 
   startMonitorBloxroute() {
+    console.log('🧱 Block: Start bloxroute')
     return new Promise((resolve) => {
       const ws = new WebSocket('wss://api.blxrbdn.com/ws', {
         headers: { Authorization: process.env.BLOXROUTE_AUTHORIZATION_HEADER },
