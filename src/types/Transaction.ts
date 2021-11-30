@@ -1,0 +1,34 @@
+export interface Transaction {
+  status: string
+  monitorId: string
+  monitorVersion: string
+  pendingTimeStamp: Date
+  pendingBlockNumber: number
+  hash: string
+  from: string
+  to: string
+  value: string
+  gas: number
+  nonce: number
+  blockHash?: any
+  blockNumber?: any
+  v: string
+  r: string
+  s: string
+  input: string
+  type: number
+  gasPrice: string
+  maxFeePerGas: string
+  maxPriorityFeePerGas: string
+  asset: string
+  estimatedBlocksUntilConfirmed: number
+  watchedAddress: string
+  direction: string
+  counterparty: string
+  serverVersion: string
+  eventCode: string
+  timeStamp: Date
+  system: string
+  network: string
+  contractCall: any
+}
